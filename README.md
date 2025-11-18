@@ -22,7 +22,7 @@ Trello - Mini Task Manager
 
  Запуск проекта:
 1) Склонировать репозиторий
-2) Открыть проект в Intellig idea
+2) Открыть проект в IntelliJ IDEA
 3) Дождаться загрузки зависимостей Gradle
 4) Запустить TrelloApplication.java
 5) Перейти на http://localhost:8020
