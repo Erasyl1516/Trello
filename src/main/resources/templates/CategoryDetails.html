@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/Mainlayout.html"  xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="main">
+    <div class="card mt-2" style="width: 500px;">
+        <h5 class="card-header"></h5>
+        <div class="card-body">
+            <h5 class="card-title" th:text="${categories.getName()}"></h5>
+        </div>
+    </div>
+    <br>
+    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editCategory" style="margin-bottom: 40px;">
+        Edit Category
+    </button>
+    <div class="modal fade" id="editCategory" tabindex="-1" aria-labelledby="saveChanges" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="saveChanges">Edit Category</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/editCategory}" method="post">
+                        <input type="hidden" th:value="${categories.getId()}" name="id_category">
+                        <label>Введите новое название:</label>
+                        <input class="form-control" name="category_name" placeholder="Введите название категорий:" type="text" th:value="${categories.getName()}">
+                        <br>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFolder" style="margin-bottom: 40px;">
+        + New Folder
+    </button>
+    <div class="modal fade" id="addFolder" tabindex="-1" aria-labelledby="addNewTask" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addNewTask">ADD NEW FOLDER</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/addFolder}" method="post">
+                        <input type="hidden" th:value="${categories.getId()}" name="category_id">
+                        <label>Folder Name:</label>
+                        <input class="form-control" name="folder_name" placeholder="Folder Name:" type="text">
+                        <br>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add Folder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2" >
+        <div class="col-6" th:each="folder: ${categories.folders}">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mt-2" >
+                        <h5 class="card-header"></h5>
+                        <div class="card-body">
+                            <h5 class="card-title"  th:text="${folder.getName()}"></h5>
+                            <a th:href="@{'/details/' + ${folder.getId()}}"  class="btn btn-primary">Details</a>
+                            <form th:action="@{'/FolderDelete'}" method="post" style="display: inline-block;margin-left: 10px;">
+                                <input name="id" type="hidden" th:value="${folder.getId()}">
+                                <input name="category_id" type="hidden" th:value="${categories.getId()}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/Mainlayout.html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div layout:fragment="main">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategory" style="margin-bottom: 40px;">
+        + New Category
+    </button>
+    <div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="addNewCategory" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addNewCategory">ADD NEW CATEGORY</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/addCategory}" method="post">
+                        <label>Category Name:</label>
+                        <input class="form-control" name="category_name" placeholder="Category Name:" type="text">
+                        <br>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add Category</button>
+                        </div>
+                    </form>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6" th:each="category: ${categories}">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mt-2" >
+                        <h5 class="card-header"></h5>
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${category.getName()}"></h5>
+                            <a th:href="@{'/categorydetails/' + ${category.getId()}}" class="btn btn-primary">Details</a>
+                            <form th:action="@{'/CategoryDelete'}" method="post" style="display: inline-block;margin-left: 10px;">
+                                <input name="id_delete" type="hidden" th:value="${category.getId()}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

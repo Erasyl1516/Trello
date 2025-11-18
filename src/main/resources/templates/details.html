@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/MainLayout.html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="main">
+
+    <div class="card mt-2" style="width: 500px;">
+        <h5 class="card-header"></h5>
+        <div class="card-body">
+            <h5 class="card-title" th:text="${folder.getName()}"></h5>
+        </div>
+    </div>
+    <br>
+    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editFolder" style="margin-bottom: 40px;">
+        Edit Folder
+    </button>
+
+    <div class="modal fade" id="editFolder" tabindex="-1" aria-labelledby="saveChangesFolder" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="saveChangesFolder">Edit Folder</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/editFolder}" method="post">
+                        <input type="hidden" th:value="${folder.getId()}" name="id_folder">
+                        <label>Введите новое название:</label>
+                        <input class="form-control" name="folder_name" placeholder="Введите название папки:" type="text" th:value="${folder.getName()}">
+                        <br>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <button type="button" class="btn btn-primary mt-2" style="margin-right: 20px"
+            data-bs-toggle="modal" data-bs-target="#addTask">
+        + New Task
+    </button>
+    <div class="modal fade" id="addTask" tabindex="-1"
+         aria-labelledby="addNewTask" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addNewTask">Add Task</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form th:action="@{/addTask}" method="post">
+
+                        <input type="hidden" name="folder_id" th:value="${folder.getId()}">
+
+                        <label>TITLE:</label>
+                        <input class="form-control" name="task_name" type="text" placeholder="Task title">
+
+                        <label class="mt-3">DESCRIPTION:</label>
+                        <textarea class="form-control" name="task_description" placeholder="Description"></textarea>
+
+                        <div class="modal-footer mt-3">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add Task</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- TASK LIST -->
+    <div class="mt-4">
+        <table class="table table-striped">
+
+            <tr>
+                <th>ID</th>
+                <th>Task Name</th>
+                <th>Status</th>
+                <th>Details</th>
+            </tr>
+
+            <tr th:each="task : ${tasks}">
+                <td th:text="${task.getId()}"></td>
+                <td th:text="${task.getTitle()}"></td>
+
+                <td th:if="${task.getStatus()==0}" style="color: blue;">TO DO</td>
+                <td th:if="${task.getStatus()==1}" style="color: orange;">IN TEST</td>
+                <td th:if="${task.getStatus()==2}" style="color: green;">DONE</td>
+                <td th:if="${task.getStatus()==3}" style="color: red;">FAILED</td>
+
+                <td>
+                    <a th:href="@{'/detailTask/' + ${task.getId()}}">View More</a>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

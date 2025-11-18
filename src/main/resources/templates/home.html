@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/Mainlayout.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div layout:fragment="main">
+    <!-- Modal -->
+    <div class="row"  >
+        <div class="col-6" th:each="folder: ${folders}">
+            <div class="row">
+                <div class="col-12">
+            <div class="card mt-2" >
+                <h5 class="card-header"></h5>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${folder.getName()}"></h5>
+                    <a th:href="@{'/details/' + ${folder.getId()}}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+</html>
