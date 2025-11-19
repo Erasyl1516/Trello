@@ -29,12 +29,12 @@ Trello - Mini Task Manager
    
  Планируется улучшение UI и добавление новых функций
  ## Скриншоты
- 
-   <img width="1918" height="925" alt="trello1" src="https://github.com/user-attachments/assets/6654e783-dc30-4fd9-9323-d2d38e20b7e9" />
-   <img width="1918" height="922" alt="trello2" src="https://github.com/user-attachments/assets/30530051-fb9c-49be-8545-9732f03b2dbf" />
-   <img width="1918" height="927" alt="trello3" src="https://github.com/user-attachments/assets/a0e70e9a-f929-48aa-a574-735f333a0e68" />
-   <img width="1918" height="926" alt="trello4" src="https://github.com/user-attachments/assets/255ceb12-8ce1-454e-8a2b-3989253ecb41" />
-   <img width="1918" height="923" alt="trello5" src="https://github.com/user-attachments/assets/983c4065-e6fb-41d7-9828-b04b10c04ae0" />
+ <img width="1918" height="926" alt="trello1" src="https://github.com/user-attachments/assets/0b08297a-77c4-4ee3-82c9-8e42df966f9c" />
+ <img width="1918" height="918" alt="trello2" src="https://github.com/user-attachments/assets/c5ba0aa5-592d-4d98-8467-53d6629fd309" />
+ <img width="1918" height="927" alt="trello3" src="https://github.com/user-attachments/assets/eab1a197-4b70-4f2d-8c44-ca88e44b6448" />
+ <img width="1918" height="925" alt="trello4" src="https://github.com/user-attachments/assets/fcecc9ce-97dc-48dd-a07c-5e72afab08b7" />
+
+
 
 
 
